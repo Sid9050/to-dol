@@ -8,6 +8,7 @@ function HomeComponent() {
   const { data: session, status } = useSession();
   const [notes, setNotes] = useRecoilState(noteState);
   const [loading, setLoading] = useState(false);
+  console.log(notes)
 
   // Fetch notes from database
   useEffect(() => {
@@ -37,7 +38,7 @@ function HomeComponent() {
               title={note.title}
               description={note.description}
               priority={note.priority}
-              date={note.dueDate}
+              dueDate={note.dueDate}
               status={note.status}
             />
           );

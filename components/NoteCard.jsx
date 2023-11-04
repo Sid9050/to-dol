@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import FormComponent from "./FormComponent";
 import { useRecoilState } from "recoil";
 import { noteState } from "@/atoms/noteState";
-import dayjs from "dayjs";
 
 function NoteCard({
   priority = "low",
@@ -44,7 +43,6 @@ function NoteCard({
   };
 
   const markNote = async (status) => {
-    console.log(status);
     const res = await fetch(`/api/note`, {
       method: "PATCH",
       body: JSON.stringify({
@@ -72,7 +70,7 @@ function NoteCard({
           {priority}
         </Badge>
       </div>
-      <Text className="mx-2">{dayjs(dueDate).format('DD/MM/YYYY')}</Text>
+      <Text className="mx-2">{dueDate}</Text>
 
       <Text size="sm" c="dimmed">
         {description}
@@ -99,12 +97,13 @@ function NoteCard({
         >
           {status === "active" ? "Mark as Done" : "Make Active"}
         </Button>
+        
         <FormComponent
           opened={opened}
           close={close}
           description={description}
           title={title}
-          dueDate={dueDate}
+          // dueDate={dayjs(dueDate,"DD/MM/YYYY")}
           status={status}
           priority={priority}
           noteId={noteId}
