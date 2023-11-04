@@ -155,7 +155,7 @@ export default async function register(req, res) {
                 description,
                 priority,
                 status,
-                dueDate,
+                dueDate: dayjs(dueDate).format("DD/MM/YYYY"),
                 user: session.user.email,
                 createdAt: serverTimestamp(),
               },
