@@ -89,7 +89,6 @@ export default async function register(req, res) {
         }
         const userData = user.data();
         const notes = userData.notes;
-        console.log(dayjs(dueDate).format("DD/MM/YYYY"))
         try {
           const newRef = doc(note);
           await setDoc(
